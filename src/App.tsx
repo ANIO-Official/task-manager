@@ -3,11 +3,10 @@ import { useState } from 'react'
 import './App.css'
 import TaskList from './components/TaskList/TaskList'
 import type { Task, TaskStatus } from './types'
-import TaskItem from './components/TaskItem/TaskItem'
 
 function App() {
 
-  //Task Data
+  //Task Data Object Array (Initial Value)
   let tasks: Task[] = [
       {
         id: '1',
@@ -36,7 +35,7 @@ function App() {
         dueDate: '01/06/2025'
       }
   ]
-  const [tasksData, setTaskData] = useState(tasks)
+  const [tasksData, setTasksData] = useState(tasks)
 
   const handleStatusChange = (taskId:string, newStatus:TaskStatus) =>{
     /*
@@ -50,17 +49,17 @@ function App() {
   }
 
   const handleTaskDeletion = (taskId: string) =>{
-    const taskItem = tasksData.filter((task) =>
-      task.id === taskId
-    )[0]
-    const indexOfTask = tasks.indexOf(taskItem, 1)
-    return tasksData.splice(indexOfTask)
+    //return only tasks that are not of the id.
+    const newTasksData = tasksData.filter((task) => task.id !== taskId)
+
+    //Set the updated data array as the new state. Which should render new data.
+    setTasksData(newTasksData)
   }
 
   return (
     <>
       <TaskList
-      tasks={tasksData}
+      tasks={tasksData} //sends state variable
       onStatusChange={handleStatusChange}
       onDelete={handleTaskDeletion}
       />

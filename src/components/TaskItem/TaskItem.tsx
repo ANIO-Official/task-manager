@@ -35,6 +35,9 @@ export default function TaskItem({ task, onStatusChange, onDelete }: TaskItemPro
 
         //set newStatus as the variable for the onStatusChange function prop to use.
         onStatusChange (task.id, newStatus)
+
+        alert(`Updating Status to ${task.status} for ${task.title}`) //check
+
     }
 
     const handleDeletion = () =>{
