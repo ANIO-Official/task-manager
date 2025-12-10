@@ -36,8 +36,7 @@ export default function TaskItem({ task, onStatusChange, onDelete }: TaskItemPro
         //set newStatus as the variable for the onStatusChange function prop to use.
         onStatusChange (task.id, newStatus)
 
-        alert(`Updating Status to ${task.status} for ${task.title}`) //check
-
+        alert(`Updated Status to ${task.status} for ${task.title}`) //check
     }
 
     const handleDeletion = () =>{
@@ -48,7 +47,7 @@ export default function TaskItem({ task, onStatusChange, onDelete }: TaskItemPro
             <div>
                 <div>
                     <h2>{task.title}</h2>
-                    <select onChange={handleStatusChange} value={selectedValue}>
+                    <select className="task-status" onChange={handleStatusChange} value={selectedValue}>
                         {/* Set the values to the string values of the type */}
                         <option value="pending">Pending</option>
                         <option value="in-progress">In Progress</option>
@@ -58,7 +57,7 @@ export default function TaskItem({ task, onStatusChange, onDelete }: TaskItemPro
                 </div>
                 <p>{task.dueDate}</p>
                 <p>{task.description}</p>
-                <p>{task.priority}</p>
+                <p className="task-priority">{task.priority}</p>
             </div>
     )
     //Create Task Item

@@ -1,6 +1,11 @@
 import type { TaskListProps } from "../../types";
 import TaskItem from "../TaskItem/TaskItem";
 
+/*
+    Props:
+    
+
+*/
 export default function TaskList({tasks, onStatusChange, onDelete}:TaskListProps){
     //Create a li for each task with their id as the key
     const createTaskList = tasks.map((task) => 
@@ -17,7 +22,7 @@ export default function TaskList({tasks, onStatusChange, onDelete}:TaskListProps
 
         <>
             <div className="task-list">
-                    <ul>{createTaskList}</ul>
+                    <ul style={{listStyle: 'none'}}>{createTaskList}</ul>
             </div>
         
         </>

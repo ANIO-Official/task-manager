@@ -1,11 +1,12 @@
 export type TaskStatus = 'pending' | 'in-progress' | 'completed';
- 
+export type TaskPriority = 'low' | 'medium' | 'high' 
+
 export interface Task {
   id: string;
   title: string;
   description: string;
   status: TaskStatus;
-  priority: 'low' | 'medium' | 'high';
+  priority: TaskPriority;
   dueDate: string;
 }
  
@@ -22,8 +23,5 @@ export interface TaskItemProps {
 }
 
 export interface TaskFilterProps {
-  onFilterChange: (filters: {
-    status?: TaskStatus;
-    priority?: 'low' | 'medium' | 'high';
-  }) => void;
+  onFilterChange: (newValue: TaskStatus | TaskPriority | '') => void;
 }
