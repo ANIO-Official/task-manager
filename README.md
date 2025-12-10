@@ -23,6 +23,7 @@ Users should be able to:
 ## Resources
 
 Per Scholas Module 9 | Lessons 1-8 Initial interfaces, references, and resources provided by Per Scholas.
+
 [Devtamin - Remove List Item](https://youtu.be/jWWW9Wyl0mY?si=7DXv_TNidg3fzjez)
 
 ## How to Use
