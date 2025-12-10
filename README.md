@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+# Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+_A React + TypeScript + Vite project focused on creating task manager app that responds to user feedback and uses list rendering, key management, conditional rendering, and component composition._
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The purpose of this project is to practice and creating TypeScript React components that handle lists of data, implement filtering, and show different states based on task properties.
 
-## React Compiler
+Users should be able to:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- View Tasks
+- Delete Tasks
+- Filter Tasks
 
-## Expanding the ESLint configuration
+### Built with
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- REACT
+- JSX
+- Vue
+- TypeScript
+- CSS
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Resources
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Per Scholas Module 9 | Lessons 1-8 Initial interfaces, references, and resources provided by Per Scholas.
+[Devtamin - Remove List Item](https://youtu.be/jWWW9Wyl0mY?si=7DXv_TNidg3fzjez)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## How to Use
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Required: Have Node and NPM installed.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1.  Clone the repository or Download the ZIP file and extract the files.
+2.  Open the file in Visual Studio Code.
+3.  Open the Terminal using Ctrl + ~
+4.  cd into the directory 'task-manager' in the terminal.
+5.  Run the project using "npm run dev" in the terminal.
+6.  You should see 3 options appear. Follow the link for the Local option. Such as "http://localhost:5173/"
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+A web app in your default browser will appear with the character counter available for interacting with.
+
+
+## Author
+
+- LinkedIn - [Amanda Ogletree](https://www.linkedin.com/in/amanda-ogletree-a61b60168)
