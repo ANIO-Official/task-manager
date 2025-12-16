@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import './App.css'
 import TaskList from './components/TaskList/TaskList'
-import type { Task, TaskPriority, TaskStatus } from './types'
+import type { Task, TaskStatus } from './types'
 import TaskFilter from './components/TaskFilter/TaskFilter'
 
 function App() {
@@ -36,19 +36,20 @@ function App() {
       dueDate: '01/06/2025'
     }
   ]
-  const [tasksData, setTasksData] = useState(tasks)
-  const [filter, setFilter] = useState('')
-  const [filteredData, setFilteredData] = useState(tasksData)
+  const [tasksData, setTasksData] = useState<Task[]>(tasks) //initial Data for modifying
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>([...tasksData])
 
+  //Change status of task item
   const handleStatusChange = (taskId: string, newStatus: TaskStatus) => {
     /*
       Find the task item by ID from the object data array 'tasksData'.
       Set the status of this specific item.
     */
-    const taskItem = tasksData.filter((task) =>
-      task.id === taskId
-    )[0]
-    taskItem.status = newStatus
+    setFilteredTasks(prevTask =>
+      prevTask.map((task) =>
+        task.id === taskId ? { ...task, status: newStatus } : task
+      )
+    )
   }
 
   const handleTaskDeletion = (taskId: string) => {
@@ -56,43 +57,40 @@ function App() {
     const newTasksData = tasksData.filter((task) => task.id !== taskId)
 
     //Set the updated data array as the new state. Which should render new data.
-    setTasksData(newTasksData)
+    setFilteredTasks(newTasksData)
   }
 
-  const handleFilteringFromChild = (newValue: TaskStatus | TaskPriority | '') => {
-    setFilter(newValue)
-    let newTasksData : Task[]
-    if(newValue === 'completed' || newValue === 'in-progress' || newValue === 'pending'){
-      newTasksData = tasksData.filter((task) => task.status === newValue)
-        setFilteredData(newTasksData)
+  const handleFilteringFromChild = (newValue: string) => {
+    // console.log(`Recieved from child: ${newValue}`) //check
+    ///return by priority
+    if (newValue === 'low' || newValue === 'medium' || newValue === 'high') {
+      const tasksOfPriority:Task[] = tasks.filter((task) => task.priority === newValue)
+      setFilteredTasks(tasksOfPriority)
     }
-    else if(newValue === 'low' || newValue === 'medium' || newValue === 'high'){
-      newTasksData = tasksData.filter((task) => task.priority === newValue)
-        setFilteredData(newTasksData)
+    //return by status
+    else if (newValue === 'pending' || newValue === 'in-progress' ||newValue ===  'completed') {
+      const tasksOfStatus: Task[] = tasks.filter((task) => task.status.toString() === newValue)
+      setFilteredTasks(tasksOfStatus)
+      //reset
     }
-    else {
-      newTasksData = tasksData
-      setFilteredData(newTasksData)}
+     else { 
+      setFilteredTasks([...tasks]) 
+      console.log('Reset')
+    }
   }
 
-    return (
-      <>
-        <TaskFilter
+  return (
+    <>
+      <TaskFilter
         onFilterChange={handleFilteringFromChild}
-        />
+      />
+      <TaskList
+        tasks={filteredTasks} //sends state variable
+        onStatusChange={handleStatusChange}
+        onDelete={handleTaskDeletion}
+      />
+    </>
+  )
+}
 
-        {/* <TaskList
-          tasks={tasksData} //sends state variable
-          onStatusChange={handleStatusChange}
-          onDelete={handleTaskDeletion}
-        /> */}
-        <TaskList
-          tasks={filteredData} //sends state variable
-          onStatusChange={handleStatusChange}
-          onDelete={handleTaskDeletion}
-        />
-      </>
-    )
-  }
-
-  export default App
+export default App

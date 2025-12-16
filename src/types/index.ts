@@ -23,5 +23,5 @@ export interface TaskItemProps {
 }
 
 export interface TaskFilterProps {
-  onFilterChange: (newValue: TaskStatus | TaskPriority | '') => void;
+  onFilterChange: (newValue: string) => void;
 }
